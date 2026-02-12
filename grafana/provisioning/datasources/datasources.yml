@@ -1,0 +1,9 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://app:8080/api/actuator/prometheus
+    isDefault: true
+    editable: true
