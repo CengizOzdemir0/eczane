@@ -21,11 +21,11 @@ RUN apk add --no-cache curl
 RUN mkdir -p /app/glowroot
 
 # Download Glowroot
-RUN wget -O glowroot.zip https://github.com/glowroot/glowroot/releases/download/v0.14.2/glowroot-0.14.2-dist.zip && \
+RUN wget -O /tmp/glowroot.zip https://github.com/glowroot/glowroot/releases/download/v0.14.2/glowroot-0.14.2-dist.zip && \
+    cd /tmp && \
     unzip glowroot.zip && \
-    rm glowroot.zip && \
     cp -r glowroot/* /app/glowroot/ && \
-    rm -rf glowroot
+    rm -rf /tmp/glowroot /tmp/glowroot.zip
 
 # Copy application jar from build stage
 COPY --from=build /app/target/*.jar app.jar
